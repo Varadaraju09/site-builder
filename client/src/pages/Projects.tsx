@@ -61,6 +61,24 @@ const Projects = () => {
     }, 1500)
   }
 
+  // Download code
+  const downloadCode = ()=> {
+    const code = previewRef.current?.getCode() || project?.current_code;
+    if(!code){
+      if(isGenerating){
+        return
+      }
+      return
+    }
+    const element = document.createElement('a');
+    const file = new Blob([code],{type:"text/html"});
+    element.href = URL.createObjectURL(file)
+    element.download = "index.html";
+    document.body.appendChild(element)
+    element.click();
+
+  }
+
   
 
   const togglePublish = async () => {
@@ -169,7 +187,7 @@ const Projects = () => {
             Preview
           </Link>
 
-          <button
+          <button onClick={downloadCode}
             
             className="bg-linear-to-br from-blue-700 to-blue-600 hover:from-blue-600 hover:to-blue-500 px-3.5 py-1 flex items-center gap-2 rounded transition-colors"
           >

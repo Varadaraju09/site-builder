@@ -56,7 +56,7 @@ const EditorPanel = ({
   return (
     <div
       className="absolute top-4 right-4 w-80 bg-white rounded-lg shadow-xl
-      border border-gray-200 p-4 z-50 animate-in fade-in slide-in-from-right-5"
+      border border-gray-200 p-4 z-50 animate-fade-in fade-in "
     >
       {/* Header */}
       <div className="flex justify-between items-center mb-4">

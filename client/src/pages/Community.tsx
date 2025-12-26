@@ -1,16 +1,14 @@
-import  { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Project } from '../types'
-import { Loader2Icon, PlusIcon, TrashIcon } from 'lucide-react'
+import { Loader2Icon } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { dummyProjects } from '../assets/assets'
 import Footer from '../components/Footer'
 
 const Community = () => {
   const [loading, setLoading] = useState(true)
-  const [projects, setProjects] = useState<Project[]>(dummyProjects)
+  const [projects] = useState<Project[]>(dummyProjects)
   const navigate = useNavigate()
-
- 
 
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 1000)
@@ -51,8 +49,9 @@ const Community = () => {
         ) : projects.length > 0 ? (
           <div className="pb-10 min-h-[80vh]">
             <div className="flex items-center justify-between pt-4">
-              <h1 className="text-2xl font-medium text-white">Published Projects</h1>
-              
+              <h1 className="text-2xl font-medium text-white">
+                Published Projects
+              </h1>
             </div>
 
             <div className="flex flex-wrap gap-4 mt-6">
@@ -60,13 +59,13 @@ const Community = () => {
                 <Link
                   key={project.id}
                   to={`/view/${project.id}`}
-                  target='_blank'
-                  className=" w-72 cursor-pointer bg-gray-900/60 border border-gray-700 rounded-lg overflow-hidden hover:border-indigo-600 transition-all"
+                  target="_blank"
+                  className="w-72 bg-gray-900/60 border border-gray-700 rounded-lg overflow-hidden hover:border-indigo-600 transition-all"
                 >
-                  {/* ===== FIXED PREVIEW ===== */}
+                  {/* Preview */}
                   <div className="relative w-full h-40 bg-gray-900 overflow-hidden border-b border-gray-800">
                     {project.current_code ? (
-                      <div className="relative w-full h-full overflow-hidden">
+                      <div className="w-full h-full overflow-hidden">
                         <div
                           style={{
                             width: '1200px',
@@ -78,7 +77,7 @@ const Community = () => {
                           <iframe
                             srcDoc={wrapPreview(project.current_code)}
                             className="w-full h-full border-0 pointer-events-none"
-                            sandbox="allow-scripts allow-same-origin"
+                            sandbox="allow-scripts"
                             title={`preview-${project.id}`}
                           />
                         </div>
@@ -90,7 +89,7 @@ const Community = () => {
                     )}
                   </div>
 
-                  {/* ===== CONTENT ===== */}
+                  {/* Content */}
                   <div className="p-4 text-white">
                     <div className="flex items-start justify-between">
                       <h2 className="text-lg font-medium line-clamp-2">
@@ -105,28 +104,19 @@ const Community = () => {
                       {project.initial_prompt}
                     </p>
 
-                    <div
-                      className="flex justify-between items-center mt-6"
-                    >
+                    <div className="flex justify-between items-center mt-6">
                       <span className="text-xs text-gray-500">
                         {new Date(project.createdAt).toLocaleDateString()}
                       </span>
-                      <div className="flex gap-2">
-                        <button
-                          className="px-3 py-1.5 bg-white/10 hover:bg-white/15 rounded-md
-                           transition-colors flex items-center gap-2"
-                        >
-                          <span className='bg-gray-200 size-4.5
-                          rounded-full text-black font-semibold flex
-                          items-center justify-center'>{project.user?.name?.slice(0,1)}</span>
-                          {project.user?.name}
-                        </button>
-                        
-                      </div>
+
+                      <button className="px-3 py-1.5 bg-white/10 hover:bg-white/15 rounded-md flex items-center gap-2">
+                        <span className="bg-gray-200 size-4.5 rounded-full text-black font-semibold flex items-center justify-center">
+                          {project.user?.name?.slice(0, 1)}
+                        </span>
+                        {project.user?.name}
+                      </button>
                     </div>
                   </div>
-
-                  
                 </Link>
               ))}
             </div>

@@ -6,6 +6,7 @@ import MyProjects from './pages/MyProjects'
 import Preview from './pages/Preview'
 import Community from './pages/Community'
 import Navbar from './components/Navbar'
+import View from './pages/View'
 
 
 const App = () => {
@@ -28,7 +29,7 @@ const App = () => {
         <Route path='/preview/:projectId' element={<Preview/>} /> 
         <Route path='/preview/:projectId/:versionId' element={<Home/>} /> 
         <Route path='/community' element={<Community/>} /> 
-        <Route path='/view/:projectId' element={<view/>} /> 
+        <Route path='/view/:projectId' element={<View/>} /> 
       
       </Routes>
     </div>
